@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipher</title>
+    <style>
+        input {
+            width: 250px;
+        }
+
+        #cipher {
+            margin-left: 15px;
+        }
+
+        button {
+            margin-bottom: 200px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./jquery.min.js"></script>
+</head>
+
+<body>
+    <label for="alpha">Alphabets :</label>
+    <input type="text" id="alpha" name="alpha"><br><br>
+    <label for="cipher">Cipher's :</label>
+    <input type="text" id="cipher" name="cipher"><br><br>
+    <script>
+        window.onload = function () {
+            document.getElementById("alpha").defaultValue = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            document.getElementById("cipher").defaultValue = "XYZABCDEFGHIJKLMNOPQRSTUVW";
+        }
+        $(function () {
+            $('input').keyup(function () {
+                this.value = this.value.toLocaleUpperCase();
+            });
+            $('textarea').keyup(function () {
+                this.value = this.value.toLocaleUpperCase();
+            });
+        });
+
+
+    </script>
+    <textarea name="CipherInput" id="CipherInput" cols="30" rows="10"></textarea>
+    <button type="button" id="encode_button" onclick="encode()">Encode</button>
+    <textarea name="CipherOutput" id="CipherOutput" cols="30" rows="10"></textarea>
+    <script>
+        function encode() {
+            var a = document.getElementById("alpha").value;
+            var c = document.getElementById("cipher").value;
+            var x = document.getElementById("CipherInput").value;
+            var y = ""
+            for (var i = 0; i < x.length; i++) {
+                if (c[a.indexOf(x[i])] == undefined) {
+                    y += " "
+                } else {
+                    y += c[a.indexOf(x[i])]
+                }
+
+            }
+            // console.log(y)
+            document.getElementById("CipherOutput").value = y;
+        }
+    </script>
+</body>
+
+</html>
